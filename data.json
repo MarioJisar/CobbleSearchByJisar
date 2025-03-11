@@ -10920,6 +10920,26 @@
       "skyLightMax": "15"
     },
     {
+      "No": "150",
+      "Pokemon": "Mewtwo",
+      "Entry": "8",
+      "Bucket": "ultra-rare",
+      "Weight": "0.4",
+      "LvMin": "55",
+      "LvMax": "60",
+      "Biomes": "Aether, Magical, Ocean",
+      "ExcludedBiomes": "Frozen Ocean",
+      "Time": "any",
+      "Weather": "any",
+      "Multipliers": "",
+      "Context": "fishing",
+      "Presets": "",
+      "Conditions": "",
+      "Anticonditions": "",
+      "skyLightMin": "8",
+      "skyLightMax": "15"
+    },
+    {
       "No": "152",
       "Pokemon": "Chikorita",
       "Entry": "1",
