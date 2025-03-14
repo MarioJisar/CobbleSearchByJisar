@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Consulta y filtra fácilmente Pokémon con esta Pokédex interactiva basada en Cobblemon.">
-<meta name="keywords" content="Pokédex, Pokémon, Cobblemon, búsqueda de Pokémon, sprites Pokémon, By Jisar">
-<meta name="author" content="Tu Nombre o Alias">
-<meta name="theme-color" content="#FF0000"> <!-- Color de la Pokédex -->
-<meta property="og:title" content="Pokédex Interactiva - Cobblemon">
-<meta property="og:description" content="Explora y filtra Pokémon de Cobblemon con una interfaz rápida y optimizada.">
-<meta property="og:image" content="URL_DEL_LOGO">
-<meta property="og:url" content="URL_DE_TU_PAGINA">
-<meta property="og:type" content="website">
-<meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Consulta y filtra fácilmente Pokémon con esta Pokédex interactiva basada en Cobblemon.">
+    <meta name="keywords" content="Pokédex, Pokémon, Cobblemon, búsqueda de Pokémon, sprites Pokémon, By Jisar">
+    <meta name="author" content="Tu Nombre o Alias">
+    <meta name="theme-color" content="#FF0000"> <!-- Color de la Pokédex -->
+    <meta property="og:title" content="Pokédex Interactiva - Cobblemon">
+    <meta property="og:description"
+        content="Explora y filtra Pokémon de Cobblemon con una interfaz rápida y optimizada.">
+    <meta property="og:image" content="URL_DEL_LOGO">
+    <meta property="og:url" content="URL_DE_TU_PAGINA">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="index, follow">
 
     <title>Buscador de Pokémon</title>
     <style>
@@ -22,129 +25,145 @@
             text-align: center;
             background-color: #f5f5f5;
         }
-        input, select {
+
+        input,
+        select {
             margin: 10px;
             padding: 5px;
         }
 
-        h2{
+        h2 {
             color: #C00000;
         }
 
-        input, select, button {
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #C00000; /* Borde rojo Pokédex */
-    border-radius: 5px;
-}
+        input,
+        select,
+        button {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #C00000;
+            /* Borde rojo Pokédex */
+            border-radius: 5px;
+        }
 
-button {
-    background-color: #C00000; /* Fondo rojo Pokédex */
-    color: white;
-    cursor: pointer;
-}
+        button {
+            background-color: #C00000;
+            /* Fondo rojo Pokédex */
+            color: white;
+            cursor: pointer;
+        }
 
-button:hover {
-    background-color: #A00000; /* Rojo más oscuro al pasar el mouse */
-}
+        button:hover {
+            background-color: #A00000;
+            /* Rojo más oscuro al pasar el mouse */
+        }
 
         .body-container {
-    display: flex;
-    align-items: flex-start; /* Alinear la caja de checkboxes y la tabla arriba */
-    gap: 20px; /* Espacio entre las dos */
-}
+            display: flex;
+            align-items: flex-start;
+            /* Alinear la caja de checkboxes y la tabla arriba */
+            gap: 20px;
+            /* Espacio entre las dos */
+        }
 
-.column-container {
-    position: sticky;
-    top: 10px;
-    width: 200px;
-    max-height: 300px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    padding: 10px;
-    background-color: white;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-}
+        .column-container {
+            position: sticky;
+            top: 10px;
+            width: 200px;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: white;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
 
-.table-container {
-    flex: 1; /* Que la tabla ocupe todo el espacio disponible */
-    overflow: auto;
-    /*overflow-y: auto; /* Permite el scroll vertical */
-    /*max-height: 400px;*/ /* Ajusta la altura m%C3%A1xima */
-    position: relative;
-}
+        .table-container {
+            flex: 1;
+            /* Que la tabla ocupe todo el espacio disponible */
+            overflow: auto;
+            /*overflow-y: auto; /* Permite el scroll vertical */
+            /*max-height: 400px;*/
+            /* Ajusta la altura m%C3%A1xima */
+            position: relative;
+        }
 
-.table-container table {
-    width: 100%;
-    border-collapse: collapse;
-}
+        .table-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: white;
-    border-radius: 5px;
-    overflow: hidden;
-}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+        }
 
-/* Responsive para pantallas pequeñas */
-@media (max-width: 768px) {
-    .body-container {
-        flex-direction: column;
-        align-items: center;
-    }
+        /* Responsive para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .body-container {
+                flex-direction: column;
+                align-items: center;
+            }
 
-    .column-container {
-        width: 100%;
-        position: relative;
-        max-height: 200px;
-    }
+            .column-container {
+                width: 100%;
+                position: relative;
+                max-height: 200px;
+            }
 
-    .table-container {
-        width: 100%;
-    }
-}
+            .table-container {
+                width: 100%;
+            }
+        }
 
-thead {
-    position: sticky;
-    top: 0;
-    background-color: #f8f8f8; /* Asegura que el fondo del encabezado sea visible */
-    z-index: 2; /* Evita que se superponga con otros elementos */
-}
+        thead {
+            position: sticky;
+            top: 0;
+            background-color: #f8f8f8;
+            /* Asegura que el fondo del encabezado sea visible */
+            z-index: 2;
+            /* Evita que se superponga con otros elementos */
+        }
 
-        th, td {
+        th,
+        td {
             border: 1px solid black;
             padding: 12px;
             text-align: left;
         }
+
         th {
-    background-color: #C00000; /* Rojo Pokédex */
-    color: white;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-}
+            background-color: #C00000;
+            /* Rojo Pokédex */
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
 
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
 
-tr:hover {
-    background-color: #f1f1f1;
-}
+        tr:hover {
+            background-color: #f1f1f1;
+        }
 
-.pokemon-popup {
-    display: none;
-    position: absolute;
-    border: 1px solid #ccc;
-    padding: 10px;
-    background-color: white;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-    border-radius: 5px;
-}
+        .pokemon-popup {
+            display: none;
+            position: absolute;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: white;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            border-radius: 5px;
+        }
 
         .pokemon-popup img {
             width: 100px;
@@ -152,27 +171,29 @@ tr:hover {
         }
 
         .pokemon {
-    cursor: pointer;
-    color: #C00000; /* Rojo Pokédex */
-}
+            cursor: pointer;
+            color: #C00000;
+            /* Rojo Pokédex */
+        }
 
-    .column-toggle {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
+        .column-toggle {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
 
-    .column-toggle label {
-        margin: 2px 0;
-    }
+        .column-toggle label {
+            margin: 2px 0;
+        }
     </style>
 </head>
+
 <body>
     <h2>Buscador de Pokémon</h2>
-    
+
     <!-- Campo de búsqueda de texto -->
     <input type="text" id="search" placeholder="Buscar...">
-    
+
     <!-- Selector para elegir el parámetro de búsqueda -->
     <select id="parametro">
         <option value="Pokemon">Pokémon</option>
@@ -194,123 +215,123 @@ tr:hover {
         <option value="skyLightMin">skyLightMin</option>
         <option value="skyLightMax">skyLightMax</option>
     </select>
-    
+
     <!-- Botón para realizar la búsqueda -->
     <button onclick="buscarPokemon()">Buscar</button>
 
     <!-- Checkboxes para activar/desactivar columnas -->
-     <div class="body-container">
-    <div class="column-container">
-        <div class="column-toggle">
-            <label><input type="checkbox" class="toggle-column" id="toggle-No" checked> No.</label>
-            <label><input type="checkbox" class="toggle-column" id="toggle-Pokemon" checked> Pokémon</label>
-            <label><input type="checkbox" class="toggle-column" id="toggle-Entry" checked> Entry</label>
-            <label><input type="checkbox" class="toggle-column" id="toggle-Bucket"> Bucket</label>
-            <label><input type="checkbox" class="toggle-column" id="toggle-Weight"> Weight</label>
-            <label><input type="checkbox" class="toggle-column" id="toggle-LvMin"> Lv. Min</label>
-            <label><input type="checkbox" class="toggle-column" id="toggle-LvMax"> Lv. Max</label>
-            <label><input type="checkbox" class="toggle-column" id="toggle-Biomes"> Biomes</label>
-            <label><input type="checkbox" class="toggle-column" id="toggle-ExcludedBiomes"> Excluded Biomes</label>
-            <label><input type="checkbox" class="toggle-column" id="toggle-Time"> Time</label>
-            <label><input type="checkbox" class="toggle-column" id="toggle-Weather"> Weather</label>
-            <label><input type="checkbox" class="toggle-column" id="toggle-Multipliers"> Multipliers</label>
-            <label><input type="checkbox" class="toggle-column" id="toggle-Context"> Context</label>
-            <label><input type="checkbox" class="toggle-column" id="toggle-Presets"> Presets</label>
-            <label><input type="checkbox" class="toggle-column" id="toggle-Conditions"> Conditions</label>
-            <label><input type="checkbox" class="toggle-column" id="toggle-Anticonditions"> Anticonditions</label>
-            <label><input type="checkbox" class="toggle-column" id="toggle-skyLightMin"> skyLightMin</label>
-            <label><input type="checkbox" class="toggle-column" id="toggle-skyLightMax"> skyLightMax</label>
+    <div class="body-container">
+        <div class="column-container">
+            <div class="column-toggle">
+                <label><input type="checkbox" class="toggle-column" id="toggle-No" checked> No.</label>
+                <label><input type="checkbox" class="toggle-column" id="toggle-Pokemon" checked> Pokémon</label>
+                <label><input type="checkbox" class="toggle-column" id="toggle-Entry" checked> Entry</label>
+                <label><input type="checkbox" class="toggle-column" id="toggle-Bucket"> Bucket</label>
+                <label><input type="checkbox" class="toggle-column" id="toggle-Weight"> Weight</label>
+                <label><input type="checkbox" class="toggle-column" id="toggle-LvMin"> Lv. Min</label>
+                <label><input type="checkbox" class="toggle-column" id="toggle-LvMax"> Lv. Max</label>
+                <label><input type="checkbox" class="toggle-column" id="toggle-Biomes"> Biomes</label>
+                <label><input type="checkbox" class="toggle-column" id="toggle-ExcludedBiomes"> Excluded Biomes</label>
+                <label><input type="checkbox" class="toggle-column" id="toggle-Time"> Time</label>
+                <label><input type="checkbox" class="toggle-column" id="toggle-Weather"> Weather</label>
+                <label><input type="checkbox" class="toggle-column" id="toggle-Multipliers"> Multipliers</label>
+                <label><input type="checkbox" class="toggle-column" id="toggle-Context"> Context</label>
+                <label><input type="checkbox" class="toggle-column" id="toggle-Presets"> Presets</label>
+                <label><input type="checkbox" class="toggle-column" id="toggle-Conditions"> Conditions</label>
+                <label><input type="checkbox" class="toggle-column" id="toggle-Anticonditions"> Anticonditions</label>
+                <label><input type="checkbox" class="toggle-column" id="toggle-skyLightMin"> skyLightMin</label>
+                <label><input type="checkbox" class="toggle-column" id="toggle-skyLightMax"> skyLightMax</label>
+            </div>
         </div>
+
+        <!-- Tabla para mostrar los resultados -->
+        <div class="table-container">
+            <table id="pokemonTable">
+                <thead>
+                    <tr>
+                        <th id="col-No">No.</th>
+                        <th id="col-Pokemon">Pokémon</th>
+                        <th id="col-Entry">Entry</th>
+                        <th id="col-Bucket">Bucket</th>
+                        <th id="col-Weight">Weight</th>
+                        <th id="col-LvMin">Lv. Min</th>
+                        <th id="col-LvMax">Lv. Max</th>
+                        <th id="col-Biomes">Biomes</th>
+                        <th id="col-ExcludedBiomes">Excluded Biomes</th>
+                        <th id="col-Time">Time</th>
+                        <th id="col-Weather">Weather</th>
+                        <th id="col-Multipliers">Multipliers</th>
+                        <th id="col-Context">Context</th>
+                        <th id="col-Presets">Presets</th>
+                        <th id="col-Conditions">Conditions</th>
+                        <th id="col-Anticonditions">Anticonditions</th>
+                        <th id="col-skyLightMin">skyLightMin</th>
+                        <th id="col-skyLightMax">skyLightMax</th>
+                    </tr>
+                </thead>
+                <tbody id="results"></tbody>
+            </table>
+        </div>
+        <button id="prevPage">Anterior</button>
+        <button id="nextPage">Siguiente</button>
+
     </div>
-
-    <!-- Tabla para mostrar los resultados -->
-     <div class="table-container">
-    <table id="pokemonTable">
-        <thead>
-            <tr>
-                <th id="col-No">No.</th>
-                <th id="col-Pokemon">Pokémon</th>
-                <th id="col-Entry">Entry</th>
-                <th id="col-Bucket">Bucket</th>
-                <th id="col-Weight">Weight</th>
-                <th id="col-LvMin">Lv. Min</th>
-                <th id="col-LvMax">Lv. Max</th>
-                <th id="col-Biomes">Biomes</th>
-                <th id="col-ExcludedBiomes">Excluded Biomes</th>
-                <th id="col-Time">Time</th>
-                <th id="col-Weather">Weather</th>
-                <th id="col-Multipliers">Multipliers</th>
-                <th id="col-Context">Context</th>
-                <th id="col-Presets">Presets</th>
-                <th id="col-Conditions">Conditions</th>
-                <th id="col-Anticonditions">Anticonditions</th>
-                <th id="col-skyLightMin">skyLightMin</th>
-                <th id="col-skyLightMax">skyLightMax</th>
-            </tr>
-        </thead>
-        <tbody id="results"></tbody>
-    </table>
-     </div>
-     <button id="prevPage">Anterior</button>
-<button id="nextPage">Siguiente</button>
-
-     </div>
 
     <div id="pokemon-popup" class="pokemon-popup">
         <img id="pokemon-img" src="" alt="Pokémon">
     </div>
 
     <script>
-document.addEventListener("DOMContentLoaded", async function () {
-    let data = [];
-    let filteredData = [];
-    let currentPage = 1;
-    const itemsPerPage = 50;
+        document.addEventListener("DOMContentLoaded", async function () {
+            let data = [];
+            let filteredData = [];
+            let currentPage = 1;
+            const itemsPerPage = 50;
 
-    const tbody = document.getElementById("results");
-    const searchInput = document.getElementById("search");
-    const parametroSelect = document.getElementById("parametro");
-    const prevBtn = document.getElementById("prevPage");
-    const nextBtn = document.getElementById("nextPage");
-    const pokemonPopup = document.getElementById("pokemon-popup");
-    const pokemonImg = document.getElementById("pokemon-img");
+            const tbody = document.getElementById("results");
+            const searchInput = document.getElementById("search");
+            const parametroSelect = document.getElementById("parametro");
+            const prevBtn = document.getElementById("prevPage");
+            const nextBtn = document.getElementById("nextPage");
+            const pokemonPopup = document.getElementById("pokemon-popup");
+            const pokemonImg = document.getElementById("pokemon-img");
 
-    async function cargarDatos() {
-        try {
-            const response = await fetch('data.json');
-            if (!response.ok) throw new Error(`Error ${response.status}: No se pudo cargar el JSON`);
-            data = await response.json();
-            filteredData = [...data];
-            actualizarTabla();
-        } catch (error) {
-            console.error("Error cargando el JSON:", error);
-        }
-    }
+            async function cargarDatos() {
+                try {
+                    const response = await fetch('data.json');
+                    if (!response.ok) throw new Error(`Error ${response.status}: No se pudo cargar el JSON`);
+                    data = await response.json();
+                    filteredData = [...data];
+                    actualizarTabla();
+                } catch (error) {
+                    console.error("Error cargando el JSON:", error);
+                }
+            }
 
-    searchInput.addEventListener("input", function () {
-        currentPage = 1;
-        buscarPokemon();
-    });
+            searchInput.addEventListener("input", function () {
+                currentPage = 1;
+                buscarPokemon();
+            });
 
-    function buscarPokemon() {
-        const query = searchInput.value.trim().toLowerCase();
-        const parametro = parametroSelect.value;
-        filteredData = data.filter(pokemon =>
-            pokemon[parametro] && pokemon[parametro].toString().toLowerCase().startsWith(query)
-        );
-        currentPage = 1;
-        actualizarTabla();
-    }
+            function buscarPokemon() {
+                const query = searchInput.value.trim().toLowerCase();
+                const parametro = parametroSelect.value;
+                filteredData = data.filter(pokemon =>
+                    pokemon[parametro] && pokemon[parametro].toString().toLowerCase().startsWith(query)
+                );
+                currentPage = 1;
+                actualizarTabla();
+            }
 
-    function actualizarTabla() {
-        tbody.innerHTML = "";
-        const start = (currentPage - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
-        const currentItems = filteredData.slice(start, end);
+            function actualizarTabla() {
+                tbody.innerHTML = "";
+                const start = (currentPage - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                const currentItems = filteredData.slice(start, end);
 
-        currentItems.forEach(pokemon => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
+                currentItems.forEach(pokemon => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
                 <td class="col-No">${pokemon.No}</td>
                 <td class="col-Pokemon">
                     <span class="pokemon" data-pokemon="${pokemon.No}">${pokemon.Pokemon}</span>
@@ -332,109 +353,110 @@ document.addEventListener("DOMContentLoaded", async function () {
                 <td class="col-skyLightMin">${pokemon.skyLightMin}</td>
                 <td class="col-skyLightMax">${pokemon.skyLightMax}</td>
             `;
-            tbody.appendChild(row);
-        });
+                    tbody.appendChild(row);
+                });
 
-        actualizarVisibilidadColumnas();
-        actualizarPaginacion();
-        asignarEventosImagen();
-    }
-
-    function actualizarVisibilidadColumnas() {
-        const columnas = ['No', 'Pokemon', 'Entry', 'Bucket', 'Weight', 'LvMin', 'LvMax', 'Biomes', 'ExcludedBiomes', 'Time', 'Weather', 'Multipliers', 'Context', 'Presets', 'Conditions', 'Anticonditions', 'skyLightMin', 'skyLightMax'];
-        
-        columnas.forEach(columna => {
-            const checkbox = document.getElementById(`toggle-${columna}`);
-            const th = document.getElementById(`col-${columna}`);
-            const tds = document.querySelectorAll(`.col-${columna}`);
-
-            if (checkbox.checked) {
-                th.style.display = '';
-                tds.forEach(td => td.style.display = '');
-            } else {
-                th.style.display = 'none';
-                tds.forEach(td => td.style.display = 'none');
+                actualizarVisibilidadColumnas();
+                actualizarPaginacion();
+                asignarEventosImagen();
             }
-        });
-    }
 
-    document.querySelectorAll('.toggle-column').forEach(checkbox => {
-        checkbox.addEventListener("change", actualizarVisibilidadColumnas);
-    });
+            function actualizarVisibilidadColumnas() {
+                const columnas = ['No', 'Pokemon', 'Entry', 'Bucket', 'Weight', 'LvMin', 'LvMax', 'Biomes', 'ExcludedBiomes', 'Time', 'Weather', 'Multipliers', 'Context', 'Presets', 'Conditions', 'Anticonditions', 'skyLightMin', 'skyLightMax'];
 
-    prevBtn.addEventListener("click", function () {
-        if (currentPage > 1) {
-            currentPage--;
-            actualizarTabla();
-        }
-    });
+                columnas.forEach(columna => {
+                    const checkbox = document.getElementById(`toggle-${columna}`);
+                    const th = document.getElementById(`col-${columna}`);
+                    const tds = document.querySelectorAll(`.col-${columna}`);
 
-    nextBtn.addEventListener("click", function () {
-        const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-        if (currentPage < totalPages) {
-            currentPage++;
-            actualizarTabla();
-        }
-    });
+                    if (checkbox.checked) {
+                        th.style.display = '';
+                        tds.forEach(td => td.style.display = '');
+                    } else {
+                        th.style.display = 'none';
+                        tds.forEach(td => td.style.display = 'none');
+                    }
+                });
+            }
 
-    function actualizarPaginacion() {
-        prevBtn.disabled = currentPage === 1;
-        nextBtn.disabled = currentPage >= Math.ceil(filteredData.length / itemsPerPage);
-    }
-
-    function asignarEventosImagen() {
-        document.querySelectorAll('.pokemon').forEach(element => {
-            element.addEventListener('mouseenter', async (e) => {
-                const pokemonId = e.target.dataset.pokemon;
-                pokemonImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
-                pokemonPopup.style.display = 'block';
-                pokemonPopup.style.top = `${e.pageY + 10}px`;
-                pokemonPopup.style.left = `${e.pageX + 10}px`;
+            document.querySelectorAll('.toggle-column').forEach(checkbox => {
+                checkbox.addEventListener("change", actualizarVisibilidadColumnas);
             });
-            element.addEventListener('mouseleave', () => {
-                pokemonPopup.style.display = 'none';
+
+            prevBtn.addEventListener("click", function () {
+                if (currentPage > 1) {
+                    currentPage--;
+                    actualizarTabla();
+                }
+            });
+
+            nextBtn.addEventListener("click", function () {
+                const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    actualizarTabla();
+                }
+            });
+
+            function actualizarPaginacion() {
+                prevBtn.disabled = currentPage === 1;
+                nextBtn.disabled = currentPage >= Math.ceil(filteredData.length / itemsPerPage);
+            }
+
+            function asignarEventosImagen() {
+                document.querySelectorAll('.pokemon').forEach(element => {
+                    element.addEventListener('mouseenter', async (e) => {
+                        const pokemonId = e.target.dataset.pokemon;
+                        pokemonImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
+                        pokemonPopup.style.display = 'block';
+                        pokemonPopup.style.top = `${e.pageY + 10}px`;
+                        pokemonPopup.style.left = `${e.pageX + 10}px`;
+                    });
+                    element.addEventListener('mouseleave', () => {
+                        pokemonPopup.style.display = 'none';
+                    });
+                });
+            }
+
+            cargarDatos();
+
+            const tableHeaders = document.querySelectorAll("th");
+
+            tableHeaders.forEach(th => {
+                th.style.position = "relative";
+
+                const resizer = document.createElement("div");
+                resizer.style.width = "5px";
+                resizer.style.height = "100%";
+                resizer.style.position = "absolute";
+                resizer.style.right = "0";
+                resizer.style.top = "0";
+                resizer.style.cursor = "col-resize";
+                resizer.style.background = "rgba(0, 0, 0, 0.1)";
+
+                th.appendChild(resizer);
+
+                resizer.addEventListener("mousedown", (event) => {
+                    document.addEventListener("mousemove", onMouseMove);
+                    document.addEventListener("mouseup", onMouseUp);
+
+                    let startX = event.pageX;
+                    let startWidth = th.offsetWidth;
+
+                    function onMouseMove(e) {
+                        let newWidth = startWidth + (e.pageX - startX);
+                        th.style.width = `${newWidth}px`;
+                    }
+
+                    function onMouseUp() {
+                        document.removeEventListener("mousemove", onMouseMove);
+                        document.removeEventListener("mouseup", onMouseUp);
+                    }
+                });
             });
         });
-    }
-
-    cargarDatos();
-
-    const tableHeaders = document.querySelectorAll("th");
-
-tableHeaders.forEach(th => {
-    th.style.position = "relative";
-
-    const resizer = document.createElement("div");
-    resizer.style.width = "5px";
-    resizer.style.height = "100%";
-    resizer.style.position = "absolute";
-    resizer.style.right = "0";
-    resizer.style.top = "0";
-    resizer.style.cursor = "col-resize";
-    resizer.style.background = "rgba(0, 0, 0, 0.1)";
-    
-    th.appendChild(resizer);
-
-    resizer.addEventListener("mousedown", (event) => {
-        document.addEventListener("mousemove", onMouseMove);
-        document.addEventListener("mouseup", onMouseUp);
-
-        let startX = event.pageX;
-        let startWidth = th.offsetWidth;
-
-        function onMouseMove(e) {
-            let newWidth = startWidth + (e.pageX - startX);
-            th.style.width = `${newWidth}px`;
-        }
-
-        function onMouseUp() {
-            document.removeEventListener("mousemove", onMouseMove);
-            document.removeEventListener("mouseup", onMouseUp);
-        }
-    });
-});
-});
 
     </script>
 </body>
+
 </html>
