@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Consulta y filtra fácilmente Pokémon con esta Pokédex interactiva basada en Cobblemon.">
+    <meta name="description"
+        content="Consulta y filtra fácilmente Pokémon con esta Pokédex interactiva basada en Cobblemon.">
     <meta name="keywords" content="Pokédex, Pokémon, Cobblemon, búsqueda de Pokémon, sprites Pokémon, By Jisar">
     <meta name="author" content="MarioJisar">
     <meta name="theme-color" content="#FF0000">
     <meta property="og:title" content="Pokédex Interactiva - Cobblemon">
-    <meta property="og:description" content="Explora y filtra Pokémon de Cobblemon con una interfaz rápida y optimizada.">
+    <meta property="og:description"
+        content="Explora y filtra Pokémon de Cobblemon con una interfaz rápida y optimizada.">
     <!-- <meta property="og:image" content="https://mmcreviews.com/wp-content/uploads/638110963447535353.png"> -->
     <meta property="og:url" content="https://mariojisar.github.io/CobbleSearchByJisar/">
     <meta property="og:type" content="website">
@@ -458,6 +460,14 @@
                     }
                 });
             });
+
+            function c_color() {
+                if (document.getElementById('col-Implemented').value = 'true') {
+                    document.getElementById('col-Implemented').style.color = "white";
+                    document.getElementById('col-Implemented').style.background = "red";
+                }
+            }
+            c_color();
         });
 
     </script>
