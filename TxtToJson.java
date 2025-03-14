@@ -33,7 +33,7 @@ public class TxtToJson {
                     "\"Weight\":\"%s\", \"LvMin\":\"%s\", \"LvMax\":\"%s\", \"Biomes\":%s, " +
                     "\"ExcludedBiomes\":\"%s\", \"Time\":\"%s\", \"Weather\":\"%s\", \"Multipliers\":\"%s\", " +
                     "\"Context\":\"%s\", \"Presets\":\"%s\", \"Conditions\":\"%s\", \"Anticonditions\":\"%s\", " +
-                    "\"skyLightMin\":\"%s\", \"skyLightMax\":\"%s\", \"canSeeSky\":\"%s\", \"Implemented\":true}",
+                    "\"skyLightMin\":\"%s\", \"skyLightMax\":\"%s\", \"canSeeSky\":\"%s\", \"Implemented\":\"true\"}",
                     values[0], values[1], values[2], values[3], values[4], values[5], values[6], biomes,
                     values[8], values[9], values[10], values[11], values[12], values[13], values[14],
                     values[15], values[16], values[17], values[18]
