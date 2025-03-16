@@ -461,13 +461,15 @@
                 });
             });
 
-            function c_color() {
-                if (document.getElementById('col-Implemented').value = 'true') {
-                    document.getElementById('col-Implemented').style.color = "white";
-                    document.getElementById('col-Implemented').style.background = "red";
-                }
-            }
-            c_color();
+            document.querySelectorAll(".col-Implemented").forEach(cell => {
+        if (cell.textContent.trim() === "true") {
+            cell.style.backgroundColor = "green";
+            cell.style.color = "white";
+        } else if (cell.textContent.trim() === "No") {
+            cell.style.backgroundColor = "red";
+            cell.style.color = "white";
+        }
+    });
         });
 
     </script>
