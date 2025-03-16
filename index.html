@@ -462,14 +462,14 @@
             });
 
             document.querySelectorAll(".col-Implemented").forEach(cell => {
-        if (cell.textContent.trim() === "true") {
-            cell.style.backgroundColor = "green";
-            cell.style.color = "white";
-        } else if (cell.textContent.trim() === "No") {
-            cell.style.backgroundColor = "red";
-            cell.style.color = "white";
-        }
-    });
+                if (cell.textContent.trim() === "Implemented") {
+                    cell.style.backgroundColor = "green";
+                    cell.style.color = "white";
+                } else if (cell.textContent.trim() === "No") {
+                    cell.style.backgroundColor = "red";
+                    cell.style.color = "white";
+                }
+            });
         });
 
     </script>
