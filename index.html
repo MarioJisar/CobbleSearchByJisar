@@ -461,8 +461,8 @@
                 });
             });
 
-            document.querySelectorAll(".col-Implemented").forEach(cell => {
-                if (cell.textContent.trim() === "false") {
+            document.querySelectorAll("#col-Implemented").forEach(cell => {
+                if (cell.textContent.trim() === "true") {
                     cell.style.backgroundColor = "green";
                     cell.style.color = "white";
                 } else {
