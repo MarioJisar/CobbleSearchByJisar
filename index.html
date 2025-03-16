@@ -462,10 +462,10 @@
             });
 
             document.querySelectorAll(".col-Implemented").forEach(cell => {
-                if (cell.textContent.trim() === "Implemented") {
+                if (cell.textContent.trim() === "true") {
                     cell.style.backgroundColor = "green";
                     cell.style.color = "white";
-                } else if (cell.textContent.trim() === "No") {
+                } else {
                     cell.style.backgroundColor = "red";
                     cell.style.color = "white";
                 }
