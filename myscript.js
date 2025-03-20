@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         <td class="col-Implemented">${pokemon.Implemented}</td>
     `;
 
-    const implementedCell = row.querySelector(".col-Implemented");
+            const implementedCell = row.querySelector(".col-Implemented");
             if (pokemon.Implemented) {
                 implementedCell.classList.add(getColorClass(pokemon.Implemented));
             }
@@ -151,13 +151,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     }
 
-    cargarDatos();
-
+    
     const tableHeaders = document.querySelectorAll("th");
-
+    
     tableHeaders.forEach(th => {
         th.style.position = "relative";
-
+        
         const resizer = document.createElement("div");
         resizer.style.width = "5px";
         resizer.style.height = "100%";
@@ -166,27 +165,28 @@ document.addEventListener("DOMContentLoaded", async function () {
         resizer.style.top = "0";
         resizer.style.cursor = "col-resize";
         resizer.style.background = "rgba(0, 0, 0, 0.1)";
-
+        
         th.appendChild(resizer);
-
+        
         resizer.addEventListener("mousedown", (event) => {
             document.addEventListener("mousemove", onMouseMove);
             document.addEventListener("mouseup", onMouseUp);
-
+            
             let startX = event.pageX;
             let startWidth = th.offsetWidth;
-
+            
             function onMouseMove(e) {
                 let newWidth = startWidth + (e.pageX - startX);
                 th.style.width = `${newWidth}px`;
             }
-
+            
             function onMouseUp() {
                 document.removeEventListener("mousemove", onMouseMove);
                 document.removeEventListener("mouseup", onMouseUp);
             }
         });
     });
-
     
+    cargarDatos();
+
 });
