@@ -176,6 +176,31 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     });
 
+    fetch("data2.json")
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById("results");
+
+            data.forEach(item => {
+                const row = document.createElement("tr");
+
+                Object.keys(item).forEach(key => {
+                    const cell = document.createElement("td");
+                    cell.textContent = item[key];
+
+                    // Si la clave es "Implemented", aplicamos la clase de color
+                    if (key === "Implemented") {
+                        cell.classList.add(getColorClass(item[key]));
+                    }
+
+                    row.appendChild(cell);
+                });
+
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error("Error al cargar el JSON:", error));
+
     cargarDatos();
 });
 
