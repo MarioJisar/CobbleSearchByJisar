@@ -89,10 +89,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                 return "green-bg";
             case "no":
                 return "red-bg";
-            case "coming soon":
-                return "orange-bg";
             default:
-                return "";
+                return "orange-bg";
         }
     }
 
