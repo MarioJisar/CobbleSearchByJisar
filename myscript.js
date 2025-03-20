@@ -92,11 +92,11 @@ document.addEventListener("DOMContentLoaded", async function () {
             const tds = document.querySelectorAll(`.col-${columna}`);
 
             if (checkbox && !checkbox.checked) {
-                if (th) th.style.display = '';
-                tds.forEach(td => td.style.display = '');
-            } else {
                 if (th) th.style.display = 'none';
                 tds.forEach(td => td.style.display = 'none');
+            } else {
+                if (th) th.style.display = '';
+                tds.forEach(td => td.style.display = '');
             }
         });
     }
