@@ -171,7 +171,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     });
 
-    data.forEach(item => {
+    const data2 = data2.json;
+
+    data2.forEach(item => {
         const row = document.createElement("tr");
 
         Object.keys(item).forEach(key => {
