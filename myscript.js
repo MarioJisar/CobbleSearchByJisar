@@ -171,31 +171,25 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     });
 
-    const data2 = data2.json;
+    const table = document.querySelector("pokemonTable"); // Asegúrate de que esta sea la tabla correcta
 
-    data2.forEach(item => {
-        const row = document.createElement("tr");
-
-        Object.keys(item).forEach(key => {
-            const cell = document.createElement("td");
-            cell.textContent = item[key];
-
-            if (key === "Implemented") {
-                if (item[key] === true) {
-                    cell.classList.add("true");
-                    cell.textContent = "✔ Implementado";
-                } else if (item[key] === false) {
-                    cell.classList.add("false");
-                    cell.textContent = "❌ No Implementado";
-                } else if (item[key] === "coming soon") {
-                    cell.classList.add("coming-soon");
-                    cell.textContent = "⏳ Próximamente";
-                }
+    table.querySelectorAll("tbody tr").forEach(row => {
+        let cell = row.cells[row.cells.length - 1]; // Última columna (Implemented)
+        if (cell) {
+            switch (cell.textContent.trim().toLowerCase()) {
+                case "true":
+                    cell.style.backgroundColor = "green";
+                    cell.style.color = "white";
+                    break;
+                case "false":
+                    cell.style.backgroundColor = "red";
+                    cell.style.color = "white";
+                    break;
+                case "coming soon":
+                    cell.style.backgroundColor = "orange";
+                    cell.style.color = "white";
+                    break;
             }
-
-            row.appendChild(cell);
-        });
-
-        tbody.appendChild(row);
+        }
     });
 });
