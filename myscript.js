@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             const response = await fetch('data2.json');
             if (!response.ok) throw new Error(`Error ${response.status}: No se pudo cargar el JSON`);
             data = await response.json();
-            filteredData = [...data];
+            filteredData = [...data];  // Mantenemos todos los datos
             actualizarTabla();
         } catch (error) {
             console.error("Error cargando el JSON:", error);
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             `;
 
             // Aplicar color a "Implemented"
-            const implementedCell = row.lastElementChild;
+            const implementedCell = row.querySelector(".col-Implemented");
             if (pokemon.Implemented) {
                 implementedCell.classList.add(getColorClass(pokemon.Implemented));
             }
@@ -81,6 +81,28 @@ document.addEventListener("DOMContentLoaded", async function () {
                 return "";
         }
     }
+
+    function actualizarVisibilidadColumnas() {
+        const columnas = ['No', 'Pokemon', 'Entry', 'Bucket', 'Weight', 'LvMin', 'LvMax', 'Biomes', 'ExcludedBiomes', 'Time', 'Weather', 'Multipliers', 'Context', 'Presets', 'Conditions', 'Anticonditions', 'skyLightMin', 'skyLightMax', 'canSeeSky', 'Implemented'];
+
+        columnas.forEach(columna => {
+            const checkbox = document.getElementById(`toggle-${columna}`);
+            const th = document.getElementById(`col-${columna}`);
+            const tds = document.querySelectorAll(`.col-${columna}`);
+
+            if (checkbox && !checkbox.checked) {
+                if (th) th.style.display = 'none';
+                tds.forEach(td => td.style.display = 'none');
+            } else {
+                if (th) th.style.display = '';
+                tds.forEach(td => td.style.display = '');
+            }
+        });
+    }
+
+    document.querySelectorAll('.toggle-column').forEach(checkbox => {
+        checkbox.addEventListener("change", actualizarVisibilidadColumnas);
+    });
 
     function asignarEventosImagen() {
         document.querySelectorAll('.pokemon').forEach(element => {
@@ -115,6 +137,21 @@ document.addEventListener("DOMContentLoaded", async function () {
     function actualizarPaginacion() {
         prevBtn.disabled = currentPage === 1;
         nextBtn.disabled = currentPage >= Math.ceil(filteredData.length / itemsPerPage);
+    }
+
+    searchInput.addEventListener("input", function () {
+        currentPage = 1;
+        buscarPokemon();
+    });
+
+    function buscarPokemon() {
+        const query = searchInput.value.trim().toLowerCase();
+        const parametro = parametroSelect.value;
+        filteredData = data.filter(pokemon =>
+            pokemon[parametro] && pokemon[parametro].toString().toLowerCase().startsWith(query)
+        );
+        currentPage = 1;
+        actualizarTabla();
     }
 
     cargarDatos();
