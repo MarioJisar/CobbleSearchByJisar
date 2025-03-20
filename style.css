@@ -1,0 +1,166 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    text-align: center;
+    background-color: #f5f5f5;
+}
+
+input,
+select {
+    margin: 10px;
+    padding: 5px;
+}
+
+h2 {
+    color: #C00000;
+}
+
+input,
+select,
+button {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #C00000;
+    /* Borde rojo Pokédex */
+    border-radius: 5px;
+}
+
+button {
+    background-color: #C00000;
+    /* Fondo rojo Pokédex */
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #A00000;
+    /* Rojo más oscuro al pasar el mouse */
+}
+
+.body-container {
+    display: flex;
+    align-items: flex-start;
+    /* Alinear la caja de checkboxes y la tabla arriba */
+    gap: 20px;
+    /* Espacio entre las dos */
+}
+
+.column-container {
+    position: sticky;
+    top: 10px;
+    width: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.table-container {
+    flex: 1;
+    /* Que la tabla ocupe todo el espacio disponible */
+    overflow: auto;
+    /*overflow-y: auto; /* Permite el scroll vertical */
+    /*max-height: 400px;*/
+    /* Ajusta la altura m%C3%A1xima */
+    position: relative;
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+    .body-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .column-container {
+        width: 100%;
+        position: relative;
+        max-height: 200px;
+    }
+
+    .table-container {
+        width: 100%;
+    }
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    background-color: #f8f8f8;
+    /* Asegura que el fondo del encabezado sea visible */
+    z-index: 2;
+    /* Evita que se superponga con otros elementos */
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #C00000;
+    /* Rojo Pokédex */
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.pokemon-popup {
+    display: none;
+    position: absolute;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    border-radius: 5px;
+}
+
+.pokemon-popup img {
+    width: 100px;
+    height: auto;
+}
+
+.pokemon {
+    cursor: pointer;
+    color: #C00000;
+    /* Rojo Pokédex */
+}
+
+.column-toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.column-toggle label {
+    margin: 2px 0;
+}
