@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         let cell = row.cells[row.cells.length - 1]; // Última columna (Implemented)
         if (cell) {
             switch (cell.textContent.trim().toLowerCase()) {
-                case "true":
+                case "yes":
                     cell.style.backgroundColor = "green";
                     cell.style.color = "white";
                     break;
