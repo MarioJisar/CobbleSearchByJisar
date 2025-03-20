@@ -69,12 +69,31 @@ document.addEventListener("DOMContentLoaded", async function () {
         <td class="col-canSeeSky">${pokemon.canSeeSky}</td>
         <td class="col-Implemented">${pokemon.Implemented}</td>
     `;
+
+    const implementedCell = row.querySelector(".col-Implemented");
+            if (pokemon.Implemented) {
+                implementedCell.classList.add(getColorClass(pokemon.Implemented));
+            }
+
             tbody.appendChild(row);
         });
 
         actualizarVisibilidadColumnas();
         actualizarPaginacion();
         asignarEventosImagen();
+    }
+
+    function getColorClass(value) {
+        switch (value.toLowerCase()) {
+            case "yes":
+                return "green-bg";
+            case "no":
+                return "red-bg";
+            case "coming soon":
+                return "orange-bg";
+            default:
+                return "";
+        }
     }
 
     function actualizarVisibilidadColumnas() {
