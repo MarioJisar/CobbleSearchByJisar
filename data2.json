@@ -22,7 +22,7 @@
         "skyLightMin": "8",
         "skyLightMax": "15",
         "canSeeSky": "",
-        "Implemented": "true"
+        "Implemented": "yes"
     },
     {
         "No": "2",
