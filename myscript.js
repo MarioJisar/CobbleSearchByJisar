@@ -171,27 +171,29 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     });
 
-    let statusIndex = -1;
-    document.querySelectorAll("th").forEach((th, index) => {
-        if (th.classList.contains("col-Implemented")) {
-            statusIndex = index;
-        }
-    });
+    data.forEach(item => {
+        const row = document.createElement("tr");
 
-    // Apply color changes only if the header is found
-    if (statusIndex !== -1) {
-        document.querySelectorAll("tbody tr").forEach(row => {
-            let cell = row.cells[statusIndex]; // Get the corresponding <td>
-            if (cell) {
-                let text = cell.textContent.trim();
-                if (text === "true") {
-                    cell.style.backgroundColor = "green";
-                    cell.style.color = "white";
-                } else if (text === "false") {
-                    cell.style.backgroundColor = "red";
-                    cell.style.color = "white";
+        Object.keys(item).forEach(key => {
+            const cell = document.createElement("td");
+            cell.textContent = item[key];
+
+            if (key === "Implemented") {
+                if (item[key] === true) {
+                    cell.classList.add("true");
+                    cell.textContent = "✔ Implementado";
+                } else if (item[key] === false) {
+                    cell.classList.add("false");
+                    cell.textContent = "❌ No Implementado";
+                } else if (item[key] === "coming soon") {
+                    cell.classList.add("coming-soon");
+                    cell.textContent = "⏳ Próximamente";
                 }
             }
+
+            row.appendChild(cell);
         });
-    }
+
+        tbody.appendChild(row);
+    });
 });
