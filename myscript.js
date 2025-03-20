@@ -17,8 +17,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             const response = await fetch('data2.json');
             if (!response.ok) throw new Error(`Error ${response.status}: No se pudo cargar el JSON`);
             data = await response.json();
-            filteredData = [...data];
+            filteredData = [...data]; // No filtramos nada al inicio
             actualizarTabla();
+            actualizarVisibilidadColumnas(); // Oculta columnas no marcadas
         } catch (error) {
             console.error("Error cargando el JSON:", error);
         }
@@ -48,32 +49,29 @@ document.addEventListener("DOMContentLoaded", async function () {
         currentItems.forEach(pokemon => {
             const row = document.createElement("tr");
             row.innerHTML = `
-        <td class="col-No">${pokemon.No}</td>
-        <td class="col-Pokemon"><span class="pokemon" data-pokemon="${pokemon.No}">${pokemon.Pokemon}</span></td>
-        <td class="col-Entry">${pokemon.Entry}</td>
-        <td class="col-Bucket">${pokemon.Bucket}</td>
-        <td class="col-Weight">${pokemon.Weight}</td>
-        <td class="col-LvMin">${pokemon.LvMin}</td>
-        <td class="col-LvMax">${pokemon.LvMax}</td>
-        <td class="col-Biomes">${pokemon.Biomes}</td>
-        <td class="col-ExcludedBiomes">${pokemon.ExcludedBiomes}</td>
-        <td class="col-Time">${pokemon.Time}</td>
-        <td class="col-Weather">${pokemon.Weather}</td>
-        <td class="col-Multipliers">${pokemon.Multipliers}</td>
-        <td class="col-Context">${pokemon.Context}</td>
-        <td class="col-Presets">${pokemon.Presets}</td>
-        <td class="col-Conditions">${pokemon.Conditions}</td>
-        <td class="col-Anticonditions">${pokemon.Anticonditions}</td>
-        <td class="col-skyLightMin">${pokemon.skyLightMin}</td>
-        <td class="col-skyLightMax">${pokemon.skyLightMax}</td>
-        <td class="col-canSeeSky">${pokemon.canSeeSky}</td>
-        <td class="col-Implemented">${pokemon.Implemented}</td>
-    `;
-
-            const implementedCell = row.querySelector(".col-Implemented");
-            if (pokemon.Implemented) {
-                implementedCell.classList.add(getColorClass(pokemon.Implemented));
-            }
+                <td class="col-No">${pokemon.No}</td>
+                <td class="col-Pokemon">
+                    <span class="pokemon" data-pokemon="${pokemon.No}">${pokemon.Pokemon}</span>
+                </td>
+                <td class="col-Entry">${pokemon.Entry}</td>
+                <td class="col-Bucket">${pokemon.Bucket}</td>
+                <td class="col-Weight">${pokemon.Weight}</td>
+                <td class="col-LvMin">${pokemon.LvMin}</td>
+                <td class="col-LvMax">${pokemon.LvMax}</td>
+                <td class="col-Biomes">${pokemon.Biomes}</td>
+                <td class="col-ExcludedBiomes">${pokemon.ExcludedBiomes}</td>
+                <td class="col-Time">${pokemon.Time}</td>
+                <td class="col-Weather">${pokemon.Weather}</td>
+                <td class="col-Multipliers">${pokemon.Multipliers}</td>
+                <td class="col-Context">${pokemon.Context}</td>
+                <td class="col-Presets">${pokemon.Presets}</td>
+                <td class="col-Conditions">${pokemon.Conditions}</td>
+                <td class="col-Anticonditions">${pokemon.Anticonditions}</td>
+                <td class="col-skyLightMin">${pokemon.skyLightMin}</td>
+                <td class="col-skyLightMax">${pokemon.skyLightMax}</td>
+                <td class="col-canSeeSky">${pokemon.canSeeSky}</td>
+                <td class="col-Implemented ${getColorClass(pokemon.Implemented)}">${pokemon.Implemented}</td>
+            `;
 
             tbody.appendChild(row);
         });
@@ -84,7 +82,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     function actualizarVisibilidadColumnas() {
-        const columnas = ['No', 'Pokemon', 'Entry', 'Bucket', 'Weight', 'LvMin', 'LvMax', 'Biomes', 'ExcludedBiomes', 'Time', 'Weather', 'Multipliers', 'Context', 'Presets', 'Conditions', 'Anticonditions', 'skyLightMin', 'skyLightMax', 'canSeeSky', 'Implemented'];
+        const columnas = [
+            'No', 'Pokemon', 'Entry', 'Bucket', 'Weight', 'LvMin', 'LvMax', 'Biomes', 'ExcludedBiomes', 'Time', 
+            'Weather', 'Multipliers', 'Context', 'Presets', 'Conditions', 'Anticonditions', 'skyLightMin', 
+            'skyLightMax', 'canSeeSky', 'Implemented'
+        ];
 
         columnas.forEach(columna => {
             const checkbox = document.getElementById(`toggle-${columna}`);
@@ -128,7 +130,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     function asignarEventosImagen() {
         document.querySelectorAll('.pokemon').forEach(element => {
             element.addEventListener('mouseenter', async (e) => {
-                const pokemonId = e.target.dataset.pokemon;
+                const pokemonId = e.target.dataset.pokemon.replace(/^0+/, ''); // Quita ceros iniciales
                 pokemonImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
                 pokemonPopup.style.display = 'block';
                 pokemonPopup.style.top = `${e.pageY + 10}px`;
@@ -140,80 +142,15 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     }
 
-
-    const tableHeaders = document.querySelectorAll("th");
-
-    tableHeaders.forEach(th => {
-        th.style.position = "relative";
-
-        const resizer = document.createElement("div");
-        resizer.style.width = "5px";
-        resizer.style.height = "100%";
-        resizer.style.position = "absolute";
-        resizer.style.right = "0";
-        resizer.style.top = "0";
-        resizer.style.cursor = "col-resize";
-        resizer.style.background = "rgba(0, 0, 0, 0.1)";
-
-        th.appendChild(resizer);
-
-        resizer.addEventListener("mousedown", (event) => {
-            document.addEventListener("mousemove", onMouseMove);
-            document.addEventListener("mouseup", onMouseUp);
-
-            let startX = event.pageX;
-            let startWidth = th.offsetWidth;
-
-            function onMouseMove(e) {
-                let newWidth = startWidth + (e.pageX - startX);
-                th.style.width = `${newWidth}px`;
-            }
-
-            function onMouseUp() {
-                document.removeEventListener("mousemove", onMouseMove);
-                document.removeEventListener("mouseup", onMouseUp);
-            }
-        });
-    });
-
-    fetch("data2.json")
-        .then(response => response.json())
-        .then(data => {
-            const tableBody = document.getElementById("results");
-
-            data.forEach(item => {
-                const row = document.createElement("tr");
-
-                Object.keys(item).forEach(key => {
-                    const cell = document.createElement("td");
-                    cell.textContent = item[key];
-
-                    // Si la clave es "Implemented", aplicamos la clase de color
-                    if (key === "Implemented") {
-                        cell.classList.add(getColorClass(item[key]));
-                    }
-
-                    row.appendChild(cell);
-                });
-
-                tableBody.appendChild(row);
-            });
-        })
-        .catch(error => console.error("Error al cargar el JSON:", error));
+    function getColorClass(value) {
+        if (!value) return "";
+        switch (value.toLowerCase()) {
+            case "yes": return "green-bg";
+            case "no": return "red-bg";
+            case "coming soon": return "orange-bg";
+            default: return "";
+        }
+    }
 
     cargarDatos();
 });
-
-// Función para asignar la clase CSS según el valor de "Implemented"
-function getColorClass(value) {
-    switch (value.toLowerCase()) {
-        case "yes":
-            return "green-bg";
-        case "no":
-            return "red-bg";
-        case "coming soon":
-            return "orange-bg";
-        default:
-            return "";
-    }
-}
