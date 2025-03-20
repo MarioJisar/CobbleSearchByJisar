@@ -171,27 +171,5 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     });
 
-    let statusIndex = -1;
-    document.querySelectorAll("th").forEach((th, index) => {
-        if (th.classList.contains("col-Implemented")) {
-            statusIndex = index;
-        }
-    });
-
-    // Apply color changes only if the header is found
-    if (statusIndex !== -1) {
-        document.querySelectorAll("tbody tr").forEach(row => {
-            let cell = row.cells[statusIndex]; // Get the corresponding <td>
-            if (cell) {
-                let text = cell.textContent.trim();
-                if (text === "true") {
-                    cell.style.backgroundColor = "green";
-                    cell.style.color = "white";
-                } else if (text === "false") {
-                    cell.style.backgroundColor = "red";
-                    cell.style.color = "white";
-                }
-            }
-        });
-    }
+    
 });
