@@ -171,25 +171,42 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     });
 
-    const table = document.querySelector("pokemonTable"); // Asegúrate de que esta sea la tabla correcta
+    fetch("data2.json")
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById("pokemonTable"); // Asegúrate de que este ID sea correcto
 
-    table.querySelectorAll("tbody tr").forEach(row => {
-        let cell = row.cells[row.cells.length - 1]; // Última columna (Implemented)
-        if (cell) {
-            switch (cell.textContent.trim().toLowerCase()) {
-                case "yes":
-                    cell.style.backgroundColor = "green";
-                    cell.style.color = "white";
-                    break;
-                case "false":
-                    cell.style.backgroundColor = "red";
-                    cell.style.color = "white";
-                    break;
-                case "coming soon":
-                    cell.style.backgroundColor = "orange";
-                    cell.style.color = "white";
-                    break;
-            }
-        }
-    });
+            data.forEach(item => {
+                const row = document.createElement("tr");
+
+                // Recorremos las claves del objeto JSON y creamos las celdas
+                Object.keys(item).forEach(key => {
+                    const cell = document.createElement("td");
+                    cell.textContent = item[key];
+
+                    // Si la clave es "Implemented", aplicamos una clase según el valor
+                    if (key === "Implemented") {
+                        cell.classList.add(getColorClass(item[key]));
+                    }
+
+                    row.appendChild(cell);
+                });
+
+                tableBody.appendChild(row);
+            });
+        });
 });
+
+// Función para asignar la clase CSS según el valor de "Implemented"
+function getColorClass(value) {
+    switch (value.toLowerCase()) {
+        case "yes":
+            return "green-bg";
+        case "no":
+            return "red-bg";
+        case "coming soon":
+            return "orange-bg";
+        default:
+            return "";
+    }
+}
