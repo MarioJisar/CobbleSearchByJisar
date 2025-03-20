@@ -164,18 +164,3 @@ tr:hover {
 .column-toggle label {
     margin: 2px 0;
 }
-
-.green-bg {
-    background-color: green;
-    color: white;
-}
-
-.red-bg {
-    background-color: red;
-    color: white;
-}
-
-.orange-bg {
-    background-color: orange;
-    color: black;
-}
