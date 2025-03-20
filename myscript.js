@@ -17,11 +17,26 @@ document.addEventListener("DOMContentLoaded", async function () {
             const response = await fetch('data2.json');
             if (!response.ok) throw new Error(`Error ${response.status}: No se pudo cargar el JSON`);
             data = await response.json();
-            filteredData = [...data];  // Mantenemos todos los datos
+            filteredData = [...data];
             actualizarTabla();
         } catch (error) {
             console.error("Error cargando el JSON:", error);
         }
+    }
+
+    searchInput.addEventListener("input", function () {
+        currentPage = 1;
+        buscarPokemon();
+    });
+
+    function buscarPokemon() {
+        const query = searchInput.value.trim().toLowerCase();
+        const parametro = parametroSelect.value;
+        filteredData = data.filter(pokemon =>
+            pokemon[parametro] && pokemon[parametro].toString().toLowerCase().startsWith(query)
+        );
+        currentPage = 1;
+        actualizarTabla();
     }
 
     function actualizarTabla() {
@@ -33,29 +48,28 @@ document.addEventListener("DOMContentLoaded", async function () {
         currentItems.forEach(pokemon => {
             const row = document.createElement("tr");
             row.innerHTML = `
-                <td class="col-No">${pokemon.No}</td>
-                <td class="col-Pokemon"><span class="pokemon" data-pokemon="${pokemon.No}">${pokemon.Pokemon}</span></td>
-                <td class="col-Entry">${pokemon.Entry}</td>
-                <td class="col-Bucket">${pokemon.Bucket}</td>
-                <td class="col-Weight">${pokemon.Weight}</td>
-                <td class="col-LvMin">${pokemon.LvMin}</td>
-                <td class="col-LvMax">${pokemon.LvMax}</td>
-                <td class="col-Biomes">${pokemon.Biomes}</td>
-                <td class="col-ExcludedBiomes">${pokemon.ExcludedBiomes}</td>
-                <td class="col-Time">${pokemon.Time}</td>
-                <td class="col-Weather">${pokemon.Weather}</td>
-                <td class="col-Multipliers">${pokemon.Multipliers}</td>
-                <td class="col-Context">${pokemon.Context}</td>
-                <td class="col-Presets">${pokemon.Presets}</td>
-                <td class="col-Conditions">${pokemon.Conditions}</td>
-                <td class="col-Anticonditions">${pokemon.Anticonditions}</td>
-                <td class="col-skyLightMin">${pokemon.skyLightMin}</td>
-                <td class="col-skyLightMax">${pokemon.skyLightMax}</td>
-                <td class="col-canSeeSky">${pokemon.canSeeSky}</td>
-                <td class="col-Implemented">${pokemon.Implemented}</td>
-            `;
+        <td class="col-No">${pokemon.No}</td>
+        <td class="col-Pokemon"><span class="pokemon" data-pokemon="${pokemon.No}">${pokemon.Pokemon}</span></td>
+        <td class="col-Entry">${pokemon.Entry}</td>
+        <td class="col-Bucket">${pokemon.Bucket}</td>
+        <td class="col-Weight">${pokemon.Weight}</td>
+        <td class="col-LvMin">${pokemon.LvMin}</td>
+        <td class="col-LvMax">${pokemon.LvMax}</td>
+        <td class="col-Biomes">${pokemon.Biomes}</td>
+        <td class="col-ExcludedBiomes">${pokemon.ExcludedBiomes}</td>
+        <td class="col-Time">${pokemon.Time}</td>
+        <td class="col-Weather">${pokemon.Weather}</td>
+        <td class="col-Multipliers">${pokemon.Multipliers}</td>
+        <td class="col-Context">${pokemon.Context}</td>
+        <td class="col-Presets">${pokemon.Presets}</td>
+        <td class="col-Conditions">${pokemon.Conditions}</td>
+        <td class="col-Anticonditions">${pokemon.Anticonditions}</td>
+        <td class="col-skyLightMin">${pokemon.skyLightMin}</td>
+        <td class="col-skyLightMax">${pokemon.skyLightMax}</td>
+        <td class="col-canSeeSky">${pokemon.canSeeSky}</td>
+        <td class="col-Implemented">${pokemon.Implemented}</td>
+    `;
 
-            // Aplicar color a "Implemented"
             const implementedCell = row.querySelector(".col-Implemented");
             if (pokemon.Implemented) {
                 implementedCell.classList.add(getColorClass(pokemon.Implemented));
@@ -67,19 +81,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         actualizarVisibilidadColumnas();
         actualizarPaginacion();
         asignarEventosImagen();
-    }
-
-    function getColorClass(value) {
-        switch (value.toLowerCase()) {
-            case "yes":
-                return "green-bg";
-            case "no":
-                return "red-bg";
-            case "coming soon":
-                return "orange-bg";
-            default:
-                return "";
-        }
     }
 
     function actualizarVisibilidadColumnas() {
@@ -104,21 +105,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         checkbox.addEventListener("change", actualizarVisibilidadColumnas);
     });
 
-    function asignarEventosImagen() {
-        document.querySelectorAll('.pokemon').forEach(element => {
-            element.addEventListener('mouseenter', async (e) => {
-                const pokemonId = e.target.dataset.pokemon;
-                pokemonImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
-                pokemonPopup.style.display = 'block';
-                pokemonPopup.style.top = `${e.pageY + 10}px`;
-                pokemonPopup.style.left = `${e.pageX + 10}px`;
-            });
-            element.addEventListener('mouseleave', () => {
-                pokemonPopup.style.display = 'none';
-            });
-        });
-    }
-
     prevBtn.addEventListener("click", function () {
         if (currentPage > 1) {
             currentPage--;
@@ -139,20 +125,70 @@ document.addEventListener("DOMContentLoaded", async function () {
         nextBtn.disabled = currentPage >= Math.ceil(filteredData.length / itemsPerPage);
     }
 
-    searchInput.addEventListener("input", function () {
-        currentPage = 1;
-        buscarPokemon();
-    });
-
-    function buscarPokemon() {
-        const query = searchInput.value.trim().toLowerCase();
-        const parametro = parametroSelect.value;
-        filteredData = data.filter(pokemon =>
-            pokemon[parametro] && pokemon[parametro].toString().toLowerCase().startsWith(query)
-        );
-        currentPage = 1;
-        actualizarTabla();
+    function asignarEventosImagen() {
+        document.querySelectorAll('.pokemon').forEach(element => {
+            element.addEventListener('mouseenter', async (e) => {
+                const pokemonId = e.target.dataset.pokemon;
+                pokemonImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
+                pokemonPopup.style.display = 'block';
+                pokemonPopup.style.top = `${e.pageY + 10}px`;
+                pokemonPopup.style.left = `${e.pageX + 10}px`;
+            });
+            element.addEventListener('mouseleave', () => {
+                pokemonPopup.style.display = 'none';
+            });
+        });
     }
+
+
+    const tableHeaders = document.querySelectorAll("th");
+
+    tableHeaders.forEach(th => {
+        th.style.position = "relative";
+
+        const resizer = document.createElement("div");
+        resizer.style.width = "5px";
+        resizer.style.height = "100%";
+        resizer.style.position = "absolute";
+        resizer.style.right = "0";
+        resizer.style.top = "0";
+        resizer.style.cursor = "col-resize";
+        resizer.style.background = "rgba(0, 0, 0, 0.1)";
+
+        th.appendChild(resizer);
+
+        resizer.addEventListener("mousedown", (event) => {
+            document.addEventListener("mousemove", onMouseMove);
+            document.addEventListener("mouseup", onMouseUp);
+
+            let startX = event.pageX;
+            let startWidth = th.offsetWidth;
+
+            function onMouseMove(e) {
+                let newWidth = startWidth + (e.pageX - startX);
+                th.style.width = `${newWidth}px`;
+            }
+
+            function onMouseUp() {
+                document.removeEventListener("mousemove", onMouseMove);
+                document.removeEventListener("mouseup", onMouseUp);
+            }
+        });
+    });
 
     cargarDatos();
 });
+
+// Función para asignar la clase CSS según el valor de "Implemented"
+function getColorClass(value) {
+    switch (value.toLowerCase()) {
+        case "yes":
+            return "green-bg";
+        case "no":
+            return "red-bg";
+        case "coming soon":
+            return "orange-bg";
+        default:
+            return "";
+    }
+}
