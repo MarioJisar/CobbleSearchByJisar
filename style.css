@@ -165,17 +165,17 @@ tr:hover {
     margin: 2px 0;
 }
 
-.true {
+.green-bg {
     background-color: green;
     color: white;
 }
 
-.false {
+.red-bg {
     background-color: red;
     color: white;
 }
 
-.coming-soon {
+.orange-bg {
     background-color: orange;
-    color: white;
+    color: black;
 }
