@@ -74,7 +74,7 @@ button:hover {
 }
 
 table {
-    width: 100%;
+    width: auto;
     border-collapse: collapse;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     background-color: white;
@@ -114,6 +114,7 @@ td {
     border: 1px solid black;
     padding: 12px;
     text-align: left;
+    white-space: nowrap;
 }
 
 th {
