@@ -1,27 +1,4 @@
 [
-    {"No": "384",
-        "Pokemon": "Bulbasaur",
-        "Entry": "1",
-        "Bucket": "ultra-rare",
-        "Weight": "6",
-        "LvMin": "5",
-        "LvMax": "32",
-        "Biomes": [
-            "Jungle",
-            "Tropical Island"
-        ],
-        "ExcludedBiomes": "",
-        "Time": "any",
-        "Weather": "any",
-        "Multipliers": "",
-        "Context": "grounded",
-        "Presets": "Natural",
-        "Conditions": "",
-        "Anticonditions": "",
-        "skyLightMin": "8",
-        "skyLightMax": "15",
-        "canSeeSky": "",
-        "Implemented": "yes"},
     {
         "No": "1",
         "Pokemon": "Bulbasaur",
