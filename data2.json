@@ -27389,6 +27389,28 @@
         "Implemented": "Base"
     },
     {
+        "No": "383",
+        "Pokemon": "Groudon",
+        "Entry": "5",
+        "Bucket": "rare",
+        "Weight": "0.25",
+        "LvMin": "45",
+        "LvMax": "60",
+        "Biomes": "Howling Constructs",
+        "ExcludedBiomes": "",
+        "Time": "any",
+        "Weather": "any",
+        "Multipliers": "",
+        "Context": "grounded",
+        "Presets": "",
+        "Conditions": "",
+        "Anticonditions": "structure:#the_bumblezone:sempiternal_sanctums",
+        "skyLightMin": "",
+        "skyLightMax": "",
+        "canSeeSky": "any",
+        "Implemented": "Unimplemented"
+    },
+    {
         "No": "387",
         "Pokemon": "Turtwig",
         "Entry": "1",
